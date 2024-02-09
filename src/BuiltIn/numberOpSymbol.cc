@@ -301,21 +301,6 @@ NumberOpSymbol::eqRewrite(DagNode* subject, RewritingContext& context)
 		  {
 		    if (a1 < 0)
 		      goto fail;
-		    if (a1 > EXPONENT_BOUND)  // handle a0 = -1, 0 or 1
-		      {
-			if (a0 == 0 || a0 == 1)
-			  {
-			    r = a0;
-			    break;
-			  }
-			else if (a0 == -1)
-			  {
-			    mpz_class t = 1;
-			    r = ((a1 & t) == 0) ? 1 : -1;
-			    break;
-			  }
-			goto fail;
-		      }
 		    mpz_pow_ui(r.get_mpz_t(), a0.get_mpz_t(), mpz_get_ui(a1.get_mpz_t()));
 		    break;
 		  }
@@ -323,15 +308,6 @@ NumberOpSymbol::eqRewrite(DagNode* subject, RewritingContext& context)
 		  {
 		    if (a1 < 0)
 		      goto fail;
-		    if (a1 > EXPONENT_BOUND)
-		      {
-			if (a0 == 0)
-			  {
-			    r = 0;
-			    break;
-			  }
-			goto fail;
-		      }
 		    r = a0 << mpz_get_ui(a1.get_mpz_t());
 		    break;
 		  }
