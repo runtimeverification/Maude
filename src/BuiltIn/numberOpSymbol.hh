@@ -66,11 +66,6 @@ protected:
   bool getNumber(DagNode* dagNode, mpz_class& value) const;
 
 private:
-  enum ImplementationConstants
-  {
-    EXPONENT_BOUND = 1000000	// max allowed exponent to limit runaway memory use
-  };
-
   int op;
   SuccSymbol* succSymbol;
   MinusSymbol* minusSymbol;
